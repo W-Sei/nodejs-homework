@@ -54,3 +54,5 @@ module.exports = {
   updateById: controllerWrapper(updateById),
   deleteById: controllerWrapper(deleteById),
 };
+
+// test
