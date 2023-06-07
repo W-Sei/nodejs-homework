@@ -1,6 +1,10 @@
-const hendleMongooseErr = (error, data, next) => {
-  error.status = 400;
+const handleMongooseErr = (error, data, next) => {
+  const { name, code } = error;
+
+  const status = name === "MongoServerError" && code === 11000 ? 409 : 400;
+
+  error.status = status;
   next();
 };
 
-module.exports = hendleMongooseErr;
+module.exports = handleMongooseErr;
