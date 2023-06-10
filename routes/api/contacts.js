@@ -5,15 +5,6 @@ const { validateBody, isValidId, authenticate, upload } = require("../../middlew
 
 const ctrlCont = require("../../controllers/contacts");
 
-// const {
-//   getAll,
-//   getById,
-//   addCont,
-//   deleteById,
-//   updateById,
-//   updateContactStatus,
-// } = require("../../controllers/contactsControl");
-
 router.get("/", authenticate, ctrlCont.getAll);
 
 router.get("/:contactId", authenticate, isValidId, ctrlCont.getById);
