@@ -1,7 +1,7 @@
 const express = require("express");
 const ctrl = require("../../controllers/auth");
 const { validateBody, authenticate, upload } = require("../../middlewares");
-const { userSchemas } = require("../../models/user");
+const { userSchemas } = require("../../models");
 const router = express.Router();
 
 // signup
@@ -17,5 +17,9 @@ router.get("/current", authenticate, ctrl.getCurrent);
 router.patch("/subscription", authenticate, ctrl.updateSubscription);
 
 router.patch("/avatars", authenticate, upload.single("avatar"), ctrl.updateAvatar);
+
+router.get("/verify/:verificationCode", ctrl.verify);
+
+router.post("/verify", validateBody(userSchemas.emailSchema), ctrl.resendVerificationEmail);
 
 module.exports = router;
